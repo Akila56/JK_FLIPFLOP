@@ -31,6 +31,26 @@ STEP:11 Load the Bit file into the SPARTAN 6 FPGA STEP:11 On the board, by givin
 ![image](https://github.com/RESMIRNAIR/JK_FLIPFLOP/assets/154305926/094e9d55-5f30-4984-90b9-dd51d5297974)
 # Circuit Diagram
 ![image](https://github.com/RESMIRNAIR/JK_FLIPFLOP/assets/154305926/5b973ee8-9ee2-402d-8cba-1adfa2e4d5f2)
+# PROGRAM
+module jk_ff (q, q_bar, j,k, clk, reset);        
+ input j,k,clk, reset;
+ output reg q;
+ output q_bar;
+ always@(posedge clk) begin
+ if(!reset)
+        q <= 0;
+ else 
+ begin
+    case({j,k})              
+         2'b00: q <= q; // No change
+         2'b01: q <= 1'b0; // reset
+         2'b10: q <= 1'b1; // set
+         2'b11: q <= ~q; // Toggle                       
+      endcase
+    end
+ end
+     assign q_bar = ~q;
+ endmodule
 # Truth Table
 ![image](https://github.com/RESMIRNAIR/JK_FLIPFLOP/assets/154305926/04d4ff52-ae20-4e08-bd70-58137b129890)
 # OUTPUT
